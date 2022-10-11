@@ -13,9 +13,10 @@
     <!-- <canvas id="canvasDora"></canvas> -->
 
     <div class="timer">
-      <div class="timer__mins">00</div>
+      <!-- <div class="timer__mins">00</div> -->
+      <input type="text" class="timer__number timer__mins" value="12" />
       <div class="timer__sep">:</div>
-      <div class="timer__secs">00</div>
+      <div class="timer__number timer__secs">00</div>
     </div>
 
     <div class="btns-timer">
@@ -116,6 +117,17 @@
     .timer {
       font-size: 16rem;
       display: flex;
+    }
+
+    .timer__sep {
+      text-align: center;
+      width: 0.8em;
+    }
+
+    .timer__number {
+      color: black;
+      width: 2em;
+      text-align: center;
     }
 
     @media screen and (max-width: 560px) {
