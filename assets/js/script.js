@@ -32,7 +32,7 @@ export const resetTimer = (ctx) => {
     ctx.totalSeconds = restDuration
   }
 
-  ctx.timerSecs.innerText = padNum(toOffsetSeconds(ctx.totalSeconds))
+  ctx.timerSecs.value = padNum(toOffsetSeconds(ctx.totalSeconds))
   ctx.timerMins.value = padNum(toOffsetMinutes(ctx.totalSeconds))
 }
 
@@ -72,7 +72,7 @@ export const startTimer = (ctx) => {
   ctx.interval = setInterval(() => {
     playAudioFromStart(ctx.audioTick)
     ctx.totalSeconds--
-    ctx.timerSecs.innerText = padNum(toOffsetSeconds(ctx.totalSeconds))
+    ctx.timerSecs.value = padNum(toOffsetSeconds(ctx.totalSeconds))
     ctx.timerMins.value = padNum(toOffsetMinutes(ctx.totalSeconds))
 
     if (ctx.totalSeconds == 0) {
