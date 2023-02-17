@@ -4,10 +4,14 @@ export const textSkip = 'Skip (S)'
 export const textReset = 'Reset (R)'
 export const textStart = 'Start (P)'
 export const textPause = 'Pause (P)'
-export const focusDuration = 25 * 60
-export const restDuration = 5 * 60
+// export const focusDuration = 25 * 60
+// export const restDuration = 5 * 60
 
 export const padNum = (num, digits = 2) => {
+  num = parseInt(num)
+  if (isNaN(num)) {
+    num = 0
+  }
   const zeroes = '0'.repeat(digits)
   let result = zeroes + num
   result = result.slice(-digits)
@@ -27,9 +31,9 @@ export const toOffsetMinutes = (totalSeconds) => Math.floor(totalSeconds / 60) %
 
 export const resetTimer = (ctx) => {
   if (ctx.isFocusTime) {
-    ctx.totalSeconds = focusDuration
+    ctx.totalSeconds = ctx.focusDuration
   } else {
-    ctx.totalSeconds = restDuration
+    ctx.totalSeconds = ctx.restDuration
   }
 
   ctx.timerSecs.value = padNum(toOffsetSeconds(ctx.totalSeconds))

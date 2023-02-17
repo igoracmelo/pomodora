@@ -14,9 +14,9 @@
 
     <div class="timer">
       <!-- <div class="timer__mins">00</div> -->
-      <input type="text" class="timer__number timer__mins" value="12" />
+      <input id="inputMins" type="text" class="timer__number timer__mins" value="12" />
       <div class="timer__sep">:</div>
-      <input type="text" class="timer__number timer__secs" value="89" />
+      <input id="inputSecs" type="text" class="timer__number timer__secs" value="89" />
     </div>
 
     <div class="btns-timer">
@@ -29,7 +29,7 @@
   <audio id="audioAlarm" src="alarm.mp3"></audio>
 
   <script type="module">
-    import { $, textSkip, textStart, resetTimer, skipTimer, toggleTimer } from './assets/js/script.js'
+    import { $, textSkip, textStart, resetTimer, skipTimer, toggleTimer, padNum } from './assets/js/script.js'
 
     const ctx = {
       totalSeconds: 0,
@@ -38,12 +38,15 @@
       audioAlarm: $('#audioAlarm'),
       timerSecs: $('.timer__secs'),
       timerMins: $('.timer__mins'),
+      focusDuration: 25 * 60,
+      restDuration: 5 * 60,
     }
 
     const btnSkip = $('#btnSkip')
     const btnStart = $('#btnStart')
     const btnReset = $('#btnReset')
 
+    const inputMins = $('#inputMins')
     btnSkip.innerText = textSkip
     btnStart.innerText = textStart
     // btnReset.innerText = textReset
@@ -52,6 +55,10 @@
 
     btnSkip.onclick = () => skipTimer(ctx)
     btnStart.onclick = () => toggleTimer(ctx)
+
+    inputMins.onkeydown = (e) => {
+      inputMins.value = padNum(inputMins.value)
+    }
 
     window.onkeydown = (e) => {
       if (e.key === 'p') {
